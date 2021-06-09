@@ -1,3 +1,3 @@
 ﻿$(document).ready(function () {
-    $("#title").css("color", "Blue")
+    $("#title").css("color", "Red")
 });
