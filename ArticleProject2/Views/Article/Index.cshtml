@@ -6,47 +6,52 @@
 
 <h1>Articles</h1>
 
-<table class="table table-hover">
+<table class="table table-hover" style="table-layout: fixed">
     <thead>
         <tr>
-            <th>
+            <th width="10%">
                 @Html.DisplayNameFor(model => model.Title)
             </th>
-            <th>
+            <th width="10%">
                 @Html.DisplayNameFor(model => model.Author)
             </th>
-            <th>
+            <th width="50%">
                 @Html.DisplayNameFor(model => model.Body)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DateCreated)
             </th>
-            <th>
+            <th width="20%">
                 <a asp-action="AddOrEdit" class="btn btn-outline-success"><i class="fas fa-pen">&nbsp;</i>Write an article...</a>
             </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Body)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreated)
-            </td>
-            <td>
-                <a asp-action="AddOrEdit" asp-route-id="@item.Id"><i class="fa fa-marker fa-lg">&nbsp;</i>Edit</a> |
-                <!--<a asp-action="Details" asp-route-id="@item.Id">Details</a> | -->
-                <a asp-action="Delete" asp-route-id="@item.Id" class="text-danger ml-1" onclick="return confirm('Are you sure to delete this article?')"><i class="fa fa-trash-alt fa-lg">&nbsp;</i>Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="overflow-wrap : break-word">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td style="overflow-wrap : break-word">
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td style="overflow-wrap: break-word; text-overflow: ellipsis">
+                    @Html.DisplayFor(modelItem => item.Body)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    <a asp-action="AddOrEdit" asp-route-id="@item.Id"><i class="fa fa-marker fa-lg">&nbsp;</i>Edit</a> |
+                    <!--<a asp-action="Details" asp-route-id="@item.Id">Details</a> | -->
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="text-danger ml-1" onclick="return confirm('Are you sure to delete this article?')"><i class="fa fa-trash-alt fa-lg">&nbsp;</i>Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section Scripts {
+    <script src="~/js/article.js"></script>
+}

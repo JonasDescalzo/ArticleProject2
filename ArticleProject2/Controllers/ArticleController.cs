@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ArticleProject2.Data;
 using ArticleProject2.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ArticleProject2.Controllers
 {
+    [Authorize]
     public class ArticleController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -47,7 +49,9 @@ namespace ArticleProject2.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(article.Id == 0)
+                article.DateCreated = DateTime.Now;
+
+                if (article.Id == 0)
                 {
                     _context.Add(article);
                 }

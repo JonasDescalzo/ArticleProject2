@@ -17,12 +17,15 @@ namespace ArticleProject2.Models
         public string Title { get; set; }
         
         [Column(TypeName = "varchar (250)")]
+        [Required(ErrorMessage = "This field is required")]
         public string Author { get; set; }
 
-        [Column(TypeName = "varchar (250)")]
+        [Column(TypeName = "longtext")]
+        [Required(ErrorMessage = "This field is required")]
         public string Body { get; set; }
 
         [Column(TypeName = "datetime")]
         public DateTime DateCreated { get; set; }
+
     }
 }

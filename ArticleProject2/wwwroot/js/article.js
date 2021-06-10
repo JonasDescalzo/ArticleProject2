@@ -1,3 +1,4 @@
 ﻿$(document).ready(function () {
-    $("#title").css("color", "Red")
+    $("#bodyTextArea").css("height", "150px")
+
 });
