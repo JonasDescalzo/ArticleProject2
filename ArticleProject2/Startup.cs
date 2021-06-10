@@ -67,7 +67,7 @@ namespace ArticleProject2
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Article}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

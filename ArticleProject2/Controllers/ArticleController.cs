@@ -28,19 +28,33 @@ namespace ArticleProject2.Controllers
         // GET: Article/Create
         public IActionResult AddOrEdit(int id = 0)
         {
-            return View(new Article());
+            if(id==0)
+            {
+                return View(new Article());
+            }
+            else
+            {
+                return View(_context.Articles.Find(id));
+            }
         }
 
-        // POST: Article/Create
+        // POST: Article/Create/AddOrEdit
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Author,Body,DateCreated")] Article article)
+        public async Task<IActionResult> AddOrEdit([Bind("Id,Title,Author,Body,DateCreated")] Article article)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(article);
+                if(article.Id == 0)
+                {
+                    _context.Add(article);
+                }
+                else
+                {
+                    _context.Update(article);
+                }
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -50,19 +64,13 @@ namespace ArticleProject2.Controllers
         // GET: Article/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var article = await _context.Articles.FindAsync(id);
 
-            var article = await _context.Articles
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (article == null)
-            {
-                return NotFound();
-            }
+            _context.Articles.Remove(article);
+            await _context.SaveChangesAsync();
 
-            return View(article);
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }
