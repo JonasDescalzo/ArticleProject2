@@ -27,5 +27,37 @@ namespace ArticleProject2.Models
         [Column(TypeName = "datetime")]
         public DateTime DateCreated { get; set; }
 
+        public string BodyDisplay
+        {
+            get {
+                if (Body.Length < 140)
+                    return Body;
+
+                return Body != null ? Body.Substring(0, 137)+ "..." : ""; 
+            }
+        }
+
+        public string AuthorDisplay
+        {
+            get
+            {
+                if (Author.Length < 21)
+                    return Author;
+
+                return Author != null ? Author.Substring(0, 17) + "..." : "";
+            }
+        }
+        public string TitleDisplay
+        {
+            get
+            {
+                if (Title.Length < 21)
+                    return Title;
+
+                return Title != null ? Title.Substring(0, 17) + "..." : "";
+            }
+        }
+
+
     }
 }

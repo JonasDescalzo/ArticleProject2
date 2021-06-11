@@ -31,20 +31,19 @@
         {
             <tr>
                 <td style="overflow-wrap : break-word">
-                    @Html.DisplayFor(modelItem => item.Title)
+                    @Html.DisplayFor(modelItem => item.TitleDisplay)
                 </td>
                 <td style="overflow-wrap : break-word">
-                    @Html.DisplayFor(modelItem => item.Author)
+                    @Html.DisplayFor(modelItem => item.AuthorDisplay)
                 </td>
-                <td style="overflow-wrap: break-word; text-overflow: ellipsis">
-                    @Html.DisplayFor(modelItem => item.Body)
+                <td style="overflow-wrap : break-word">
+                    @Html.DisplayFor(modelItem => item.BodyDisplay)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DateCreated)
                 </td>
                 <td>
                     <a asp-action="AddOrEdit" asp-route-id="@item.Id"><i class="fa fa-marker fa-lg">&nbsp;</i>Edit</a> |
-                    <!--<a asp-action="Details" asp-route-id="@item.Id">Details</a> | -->
                     <a asp-action="Delete" asp-route-id="@item.Id" class="text-danger ml-1" onclick="return confirm('Are you sure to delete this article?')"><i class="fa fa-trash-alt fa-lg">&nbsp;</i>Delete</a>
                 </td>
             </tr>
